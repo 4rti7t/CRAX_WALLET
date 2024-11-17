@@ -32,7 +32,7 @@ API Key: For Ethereum balances, get a free API key from Etherscan.
 ⚙️ Setup
 
 ```
-• git clone https://github.com/4rti7t/CRAX-WALLET/tree/main/CRAX-WALLET
+• git clone https://github.com/4rti7t/CRAX_WALLET.git
 • cd CRAX-WALLET
 • sudo bash requirements.sh
 • python3 crax_wallet.py
