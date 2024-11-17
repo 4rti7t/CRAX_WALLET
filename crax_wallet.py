@@ -1,13 +1,20 @@
 import sys
+import os
 import requests
 from mnemonic import Mnemonic
 from bitcoinlib.keys import HDKey
 from eth_account import Account
+import random
 import time
+from colorama import init, Fore, Style
+
+# Initialize colorama
+init(autoreset=True)
 
 # Replace with your actual Etherscan API key
 ETHERSCAN_API_KEY = '7XX8YH287DCVYQXX7IMMWEIFGMXV1RQ5T5'
 
+# ASCII Art for Menu
 ascii_art = """
 ▄████▄   ██▀███   ▄▄▄      ▒██   ██▒       █     █░ ▄▄▄       ██▓     ██▓    ▓█████▄▄▄█████▓   
 ▒██▀ ▀█  ▓██ ▒ ██▒▒████▄    ▒▒ █ █ ▒░      ▓█░ █ ░█░▒████▄    ▓██▒    ▓██▒    ▓█   ▀▓  ██▒ ▓▒   
@@ -18,15 +25,82 @@ ascii_art = """
   ░  ▒     ░▒ ░ ▒░  ▒   ▒▒ ░░░   ░▒ ░        ▒ ░ ░    ▒   ▒▒ ░░ ░ ▒  ░░ ░ ▒  ░ ░ ░  ░   ░       
 ░          ░░   ░   ░   ▒    ░    ░          ░   ░    ░   ▒     ░ ░     ░ ░      ░    ░         
 ░ ░         ░           ░  ░ ░    ░            ░          ░  ░    ░  ░   ░  ░   ░  ░           
-░                                                                                                
+░                                        
+                        \033[1mразработано @ARTIST для INFLUXION\033[0m
 """
-print(ascii_art)
+
+# ASCII Art 2 for Shuffle Phrases
+ascii_art_2 = """
+
+   ▄████████    ▄█    █▄    ███    █▄     ▄████████    ▄████████  ▄█          ▄████████ 
+  ███    ███   ███    ███   ███    ███   ███    ███   ███    ███ ███         ███    ███ 
+  ███    █▀    ███    ███   ███    ███   ███    █▀    ███    █▀  ███         ███    █▀  
+  ███         ▄███▄▄▄▄███▄▄ ███    ███  ▄███▄▄▄      ▄███▄▄▄     ███        ▄███▄▄▄     
+▀███████████ ▀▀███▀▀▀▀███▀  ███    ███ ▀▀███▀▀▀     ▀▀███▀▀▀     ███       ▀▀███▀▀▀     
+         ███   ███    ███   ███    ███   ███          ███        ███         ███    █▄  
+   ▄█    ███   ███    ███   ███    ███   ███          ███        ███▌    ▄   ███    ███ 
+ ▄████████▀    ███    █▀    ████████▀    ███          ███        █████▄▄██   ██████████ 
+                                                                 ▀                                                                   
+                        \033[1mразработано @ARTIST для INFLUXION\033[0m
+                        
+"""
+
+# ASCII Art 3 for Check Balances
+ascii_art_3 = """
+██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗    ██████╗  █████╗ ██╗      █████╗ ███╗   ██╗ ██████╗███████╗    
+██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝    ██╔══██╗██╔══██╗██║     ██╔══██╗████╗  ██║██╔════╝██╔════╝    
+██║     ███████║█████╗  ██║     █████╔╝     ██████╔╝███████║██║     ███████║██╔██╗ ██║██║     █████╗      
+██║     ██╔══██║██╔══╝  ██║     ██╔═██╗     ██╔══██╗██╔══██║██║     ██╔══██║██║╚██╗██║██║     ██╔══╝      
+╚██████╗██║  ██║███████╗╚██████╗██║  ██╗    ██████╔╝██║  ██║███████╗██║  ██║██║ ╚████║╚██████╗███████╗    
+ ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝    
+                        \033[1mразработано @ARTIST для INFLUXION\033[0m
+"""
+
+# Utility Functions
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def is_valid_mnemonic(mnemonic):
     try:
         return Mnemonic("english").check(mnemonic)
-    except Exception as e:
+    except Exception:
         return False
+
+def shuffle_phrases():
+    clear_screen()  # Clear screen before showing ASCII art and processing
+    print("\033[1m" + ascii_art_2)  # Bold ASCII art for Shuffle Phrases
+    print(Fore.CYAN + "\033[1mShuffle Phrases: Enter phrases to shuffle.")  # Bold text
+    phrases = input(Fore.YELLOW + "\033[1mEnter space-separated mnemonic phrases: ").strip().split()
+    
+    if len(phrases) < 2:
+        print(Fore.RED + "\033[1mError: Please enter at least 2 phrases for shuffling.")
+        return
+    
+    shuffled_results = []
+    
+    # Shuffle the phrases 144 times and store each shuffled result
+    for _ in range(144):
+        random.shuffle(phrases)
+        shuffled_results.append(" ".join(phrases))
+    
+    # Show the final shuffled mnemonic (just for reference)
+    print(Fore.GREEN + "\033[1mShuffled Mnemonics:")
+    for result in shuffled_results:
+        print(Fore.CYAN + result)
+    
+    # Saving the shuffled results to a file
+    output_file = input(Fore.YELLOW + "\033[1mEnter the output file path to save shuffled phrases: ").strip()
+    try:
+        with open(output_file, 'w') as file:
+            for result in shuffled_results:
+                file.write(result + "\n")
+        print(Fore.GREEN + f"\033[1mShuffled mnemonics saved to: {output_file}")
+    except Exception as e:
+        print(Fore.RED + f"\033[1mError saving to file: {e}")
+    
+    # Show the modern progress bar after shuffling
+    modern_progress_bar(duration=3)
+
 
 def get_bitcoin_address(mnemonic):
     seed = Mnemonic("english").to_seed(mnemonic)
@@ -61,78 +135,80 @@ def get_ethereum_balance(address):
 def format_balance(balance, coin):
     if balance is None:
         return f"\033[91mError\033[0m"
-    elif coin == "ETH" and balance < 1e-9:
-        return f"\033[93m{balance:.10e} ETH\033[0m"  # Scientific notation for small ETH balances
     else:
-        return f"\033[92m{balance:.8f} {coin}\033[0m"  # Normal format for Bitcoin and larger ETH balances
+        return f"\033[92m{balance:.8f} {coin}\033[0m"
 
-def check_balances(mnemonic):
-    btc_address = get_bitcoin_address(mnemonic)
-    eth_address = get_ethereum_address(mnemonic)
-    btc_balance = get_bitcoin_balance(btc_address)
-    eth_balance = get_ethereum_balance(eth_address)
+def modern_progress_bar(duration=5):
+    for i in range(101):
+        bar = "\033[94m[" + "#" * (i // 2) + "-" * (50 - (i // 2)) + "]\033[0m"
+        print(f"\r{bar} {i}%", end="")
+        time.sleep(duration / 100)
+    print("\n")
 
-    print(f"\n\033[1mMnemonic:\033[0m \033[96m{mnemonic}\033[0m")
-    print(f"  \033[94mBitcoin Address:\033[0m \033[1m{btc_address}\033[0m")
-    print(f"  \033[92mBitcoin Balance:\033[0m {format_balance(btc_balance, 'BTC')}")
-    print(f"  \033[96mEthereum Address:\033[0m \033[1m{eth_address}\033[0m")
-    print(f"  \033[95mEthereum Balance:\033[0m {format_balance(eth_balance, 'ETH')}")
-    print("\033[1m" + "-" * 50 + "\033[0m")
-
-def modern_progress_bar(duration=1):
-    bar_length = 50  # Length of the progress bar
-    start_time = time.time()  # Record the start time
-    
-    for i in range(101):  # 0 to 100 percentage
-        elapsed_time = time.time() - start_time  # Time elapsed since the start
-        progress = int((i / 100) * bar_length)
-        bar = f"\033[94m[{'▓' * progress}{'░' * (bar_length - progress)}]\033[0m"  # Blue bar with block characters
-        sys.stdout.write(f"\r{bar} {i}% Complete")  # Overwrite the same line
-        sys.stdout.flush()
+# Main Menu Functionality
+def menu():
+    while True:
+        clear_screen()  # Clear screen at the start of each new option selection
+        print(ascii_art)
+        print(Fore.CYAN + "\nCryptocurrency Wallet Utility")
+        print(Fore.YELLOW + "1. Shuffle Mnemonic Phrases")
+        print(Fore.YELLOW + "2. Check Wallet Balances")
+        print(Fore.YELLOW + "3. Exit\n")
         
-        # Make the loop run for exactly the specified duration (1 seconds)
-        if i != 0:
-            time.sleep(duration / 100)  # Adjust sleep time to complete in 1 seconds
-    
-    sys.stdout.write("\n🎉 \033[92mTask Completed Successfully!\033[0m\n")
+        choice = input(Fore.GREEN + "Choose an option: ")
+        
+        if choice == '1':
+            shuffle_phrases()
+        elif choice == '2':
+            check_balances_menu()
+        elif choice == '3':
+            print(Fore.RED + "Exiting the program.")
+            sys.exit()
+        else:
+            print(Fore.RED + "Invalid choice. Please select a valid option.")
 
-def process_file(file_path):
+def check_balances_menu():
+    clear_screen()  # Clear screen before showing ASCII art and processing
+    print(ascii_art_3)  # Print third ASCII art for Check Balances
+    print(Fore.CYAN + "Checking balances for your cryptocurrency wallets...")
+    file_path = input(Fore.YELLOW + "Enter the file path for mnemonic phrases: ").strip()
+    
     try:
         with open(file_path, 'r') as file:
             mnemonics = file.readlines()
             if not mnemonics:
-                print("The file is empty. Please provide a file with mnemonic phrases.")
+                print(Fore.RED + "Error: The file is empty. Please provide a file with mnemonic phrases.")
                 return
             
-            start_time = time.time()  # Start time for measuring the total time
+            start_time = time.time()
             for index, mnemonic in enumerate(mnemonics, start=1):
-                mnemonic = mnemonic.strip()  # Remove extra spaces or newline characters
+                mnemonic = mnemonic.strip()
                 if not mnemonic:
-                    continue  # Skip empty lines
+                    continue
                 
                 print(f"\nProcessing Mnemonic {index}:")
-                
                 if not is_valid_mnemonic(mnemonic):
-                    print(f"  \033[1;35mSkipping this mnemonic as it's not BIP39 compliant.\033[0m")
-                    print("\033[1m" + "-" * 50 + "\033[0m")
+                    print(Fore.MAGENTA + "Skipping invalid BIP39 mnemonic.")
                     continue
-
-                check_balances(mnemonic)  # Process only valid mnemonics
                 
-            # Measure total duration and update the progress bar
-            total_duration = time.time() - start_time
-            modern_progress_bar()  # Fixed progress bar with 3 seconds duration
+                btc_address = get_bitcoin_address(mnemonic)
+                eth_address = get_ethereum_address(mnemonic)
+                btc_balance = get_bitcoin_balance(btc_address)
+                eth_balance = get_ethereum_balance(eth_address)
+
+                print(Fore.BLUE + f"  Bitcoin Address: {btc_address}")
+                print(Fore.GREEN + f"  Bitcoin Balance: {format_balance(btc_balance, 'BTC')}")
+                print(Fore.CYAN + f"  Ethereum Address: {eth_address}")
+                print(Fore.MAGENTA + f"  Ethereum Balance: {format_balance(eth_balance, 'ETH')}")
+                print(Fore.YELLOW + "-" * 50)
             
+            modern_progress_bar(duration=3)
+    
     except FileNotFoundError:
-        print("\033[1mFile not found.\033[0m Please provide a valid file path.")
+        print(Fore.RED + "Error: File not found. Please provide a valid file path.")
     except Exception as e:
-        print(f"\033[1mAn error occurred:\033[0m {e}")
+        print(Fore.RED + f"An error occurred: {e}")
 
+# Run the Menu
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("\033[1mUsage:\033[0m python check_multi_coin_balance.py <mnemonic_file>")
-        sys.exit(1)
-
-    file_path = sys.argv[1]
-    process_file(file_path)
-
+    menu()
