@@ -28,7 +28,20 @@ pip install mnemonic bitcoinlib eth_account requests colorama
 Python: >= 3.7
 Network Access: Required for balance APIs.
 API Key: For Ethereum balances, get a free API key from Etherscan.
+
 ⚙️ Setup
+
+```
+• git clone https://github.com/R3LI4NT/Wifi-Hack
+• cd Wifi-Hack
+• sudo bash requirements.sh
+• python3 wifi-hack.py
+```
+
+</br>
+
+<h1 align="center"></h1>
+
 Clone the repository:
 
 bash
