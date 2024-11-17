@@ -55,8 +55,12 @@ View addresses and balances for Bitcoin and Ethereum.
 Main Menu
 
 Shuffle Phrases
+![SHUFFLE](https://github.com/user-attachments/assets/b8d4778b-6fc1-486e-aacb-68faae4627d7)
+
 
 Wallet Balances
+![SHUFFLE](https://github.com/user-attachments/assets/0c04a497-799f-44f6-a8be-598c15aa12ea)
+
 
 **📋 Notes**
 Ensure valid BIP39 mnemonic phrases for correct results.
