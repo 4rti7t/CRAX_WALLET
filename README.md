@@ -61,7 +61,17 @@ Shuffle Phrases
 Wallet Balances
 ![SHUFFLE](https://github.com/user-attachments/assets/0c04a497-799f-44f6-a8be-598c15aa12ea)
 
+**This tool is tested on:**
+✅ Ubuntu
+✅ Linux Mint
+✅ Kali Linux
+✅ Fedora
+✅ Arch Linux
+✅ Parrot Security OS
+✅ Windows 11
+✅ Termux (Android)
 
+All the new features are primarily tested on Linux, thus Linux is recommended for running PhoneSploit Pro. Some features might not work properly on Windows.
 **📋 Notes**
 Ensure valid BIP39 mnemonic phrases for correct results.
 For enhanced performance, consider multithreading for balance checks.
