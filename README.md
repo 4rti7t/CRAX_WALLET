@@ -32,37 +32,15 @@ API Key: For Ethereum balances, get a free API key from Etherscan.
 ⚙️ Setup
 
 ```
-• git clone https://github.com/R3LI4NT/Wifi-Hack
-• cd Wifi-Hack
+• git clone https://github.com/4rti7t/CRAX-WALLET/tree/main/CRAX-WALLET
+• cd CRAX-WALLET
 • sudo bash requirements.sh
-• python3 wifi-hack.py
+• python3 crax_wallet.py
 ```
 
 </br>
 
 <h1 align="center"></h1>
-
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/your-username/crypto-wallet-utility.git
-cd crypto-wallet-utility
-Install dependencies:
-
-bash
-Copy code
-pip install -r requirements.txt
-Add your Etherscan API key in the script:
-
-python
-Copy code
-ETHERSCAN_API_KEY = 'your_api_key_here'
-Run the script:
-
-bash
-Copy code
-python script_name.py
 
 **📖 Usage**
 🎲 Shuffle Mnemonic Phrases
