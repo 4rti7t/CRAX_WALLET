@@ -29,13 +29,13 @@ Python: >= 3.7
 Network Access: Required for balance APIs.
 API Key: For Ethereum balances, get a free API key from Etherscan.
 
-⚙️ Setup
+⚙️ **INSTALLATION**
 
 ```
-• git clone https://github.com/4rti7t/CRAX_WALLET.git
-• cd CRAX-WALLET
-• sudo bash requirements.sh
-• python3 crax_wallet.py
+ git clone https://github.com/4rti7t/CRAX_WALLET.git
+ cd CRAX_WALLET
+ sudo bash requirements.sh
+ python3 crax_wallet.py
 ```
 
 </br>
@@ -72,4 +72,5 @@ Feel free to submit issues or pull requests for improvements. For major changes,
 **🙌 Acknowledgments**
 ASCII Art generated with TAAG.
 Progress bar inspired by modern UX principles.
+
 **Developed with ❤️ by @ARTIST for INFLUXION.**
