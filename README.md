@@ -41,7 +41,7 @@ Ensure the following dependencies are installed:
 ```
  git clone https://github.com/4rti7t/CRAX_WALLET.git
  cd CRAX_WALLET
- sudo bash requirements.sh
+ pip install -r requirements.txt
  python3 crax_wallet.py
 ```
 
