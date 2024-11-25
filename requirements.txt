@@ -1,0 +1,6 @@
+requests==2.31.0
+mnemonic==0.20
+bitcoinlib==0.6.8
+eth-account==0.8.0
+colorama==0.4.6
+
